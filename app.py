@@ -1,4 +1,4 @@
-import random
+import secrets
 import string
 
 characters = string.ascii_letters + string.digits + string.punctuation
@@ -12,9 +12,9 @@ while not exit_loop:
         if length < 10 or length > 25:
             print("ERROR: Length must be between 10 and 25")
         else:
-            password = "".join(random.choices(characters, k=length))
+            password = "".join(secrets.choice(characters) for i in range(length))
             print(password)
             if input("Enter 'x' to exit the program: ") == "x":
                 exit_loop = True
-    except:
-        print("ERROR: Length must be between 10 and 25")
+    except ValueError:
+        print("ERROR: Enter a whole number")
